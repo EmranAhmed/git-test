@@ -40,13 +40,13 @@ jobs:
       - name: Make Zip # This would actually build your project, using zip for an example artifact
         run: npm run plugin-zip --if-present
 
-      - name: Upload Zip
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.plugin_name }}.zip
-          path: ${{ env.plugin_name }}.zip
-          overwrite: true
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+#      - name: Upload Zip
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: ${{ env.plugin_name }}
+#          path: ${{ env.plugin_name }}.zip
+#          overwrite: true
+#          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
 
       - name: Create Release
         id: create_release
@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: Released ${{ github.ref }}
           draft: false
           prerelease: false
 
@@ -66,6 +66,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./${{ env.plugin_name }}.zip
-          asset_name: ${{ env.plugin_name }}.zip
+          asset_path: ./${{ github.repository }}.zip
+          asset_name: ${{ github.repository }}
           asset_content_type: application/zip
