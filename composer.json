@@ -1,0 +1,52 @@
+{
+	"name" : "storepress/test-plugin",
+	"description" : "Test Plugin",
+	"minimum-stability" : "stable",
+	"license" : "GPLv3",
+	"type" : "wordpress-plugin",
+	"keywords" : [
+		"gutenberg",
+		"wordpress",
+		"storepress",
+		"plugin"
+	],
+	"homepage" : "https://github.com/EmranAhmed/storepress-create-plugin#readme",
+	"authors" : [
+		{
+			"name" : "Emran Ahmed",
+			"email" : "emran@storepress.com"
+		},
+		{
+			"name" : "StorePress Inc.",
+			"email" : "storepresshq@gmail.com"
+		}
+	],
+	"require" : {
+		"storepress/admin-utils" : "^1.8.6",
+		"automattic/jetpack-autoloader" : "^v3.0.8"
+	},
+	"require-dev" : {
+		"automattic/vipwpcs" : "^3.0",
+		"phpcompatibility/phpcompatibility-wp" : "^2.1.5",
+		"woocommerce/woocommerce-sniffs" : "^1.0.0",
+		"wp-cli/i18n-command" : "^v2.6.0",
+		"wp-coding-standards/wpcs" : "^3.1.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"StorePress\\TestPlugin\\" : "includes/"
+		}
+	},
+	"config" : {
+		"optimize-autoloader" : true,
+		"sort-packages" : true,
+		"allow-plugins" : {
+			"dealerdirect/phpcodesniffer-composer-installer" : true,
+			"automattic/jetpack-autoloader" : true
+		}
+	},
+	"scripts" : {
+		"format" : "./vendor/bin/phpcbf --standard=phpcs.xml",
+		"lint" : "./vendor/bin/phpcs --standard=phpcs.xml --report-summary --report-source --ignore-annotations --report-full=phpcs-report.txt"
+	}
+}

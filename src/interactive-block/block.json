@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "storepress/interactive-block",
+	"version": "0.1.0",
+	"title": "StorePress Interactive Block",
+	"category": "storepress",
+	"icon": "sticky",
+	"description": "StorePress interactive block with the Interactivity API",
+	"attributes": {
+		"x": {
+			"type": "number",
+			"default": 100
+		},
+		"y": {
+			"type": "number",
+			"default": 100
+		},
+		"id": {
+			"type": "integer",
+			"default": 0
+		},
+		"parent": {
+			"enum": [ "popup", "slider" ],
+			"default": "popup"
+		},
+		"tooltipPosition": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"tooltipWidth": {
+			"type": "number",
+			"default": 300
+		},
+		"isOpenedDefault": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"interactivity": true
+	},
+	"textdomain": "test-plugin",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./viewModule.js",
+	"viewStyle": [ "storepress-test-plugin-frontend-style" ],
+	"render": "file:./render.php"
+}
