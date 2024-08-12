@@ -4,6 +4,9 @@ on:
     tags:
       - '**' # Push events to matching  i.e. 1.0, 20.15.10, including hierarchical tags like v1.0/beta
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions: write-all
+
 env:
   plugin_name: test-plugin
 
