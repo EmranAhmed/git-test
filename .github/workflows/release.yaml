@@ -37,8 +37,16 @@ jobs:
 #      - run: npm run plugin-zip --if-present
 #      - run: npm test
 
-      - name: Build project # This would actually build your project, using zip for an example artifact
+      - name: Make Zip # This would actually build your project, using zip for an example artifact
         run: npm run plugin-zip --if-present
+
+      - name: Upload Zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.plugin_name }}.zip
+          path: ${{ env.plugin_name }}.zip
+          overwrite: true
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
 
       - name: Create Release
         id: create_release
