@@ -20,6 +20,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Load package.json
+        id: package
+        uses: ActionsTools/read-json-action@main
+        with:
+         file_path: "package.json"
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -70,6 +76,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./${{ env.REPOSITORY_NAME }}.zip
-          asset_name: ${{ env.REPOSITORY_NAME }}
+          asset_path: './${{steps.package.outputs.name}}.zip'
+          asset_name: ${{ steps.package.outputs.name }}
           asset_content_type: application/zip
