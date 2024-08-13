@@ -65,7 +65,6 @@ jobs:
           # release_name: Release ${{ github.ref }}
           # release_name: '${{env.REPOSITORY_NAME}}-${{ github.ref }}'
           release_name: 'v${{ github.ref }}'
-          body_path: ./release-notes.txt
           draft: false
           prerelease: ${{ contains(github.ref, '-rc') }}
 
