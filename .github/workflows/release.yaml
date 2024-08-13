@@ -10,11 +10,11 @@ permissions: write-all
 env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
-name: Prepare Release
+name: Release
 
 jobs:
   build:
-    name: Prepare OS
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
