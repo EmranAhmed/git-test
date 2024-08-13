@@ -2,6 +2,8 @@
 
 A StorePress Plugin
 
+You can [test the block in your browser](https://playground.wordpress.net/?mode=seamless&blueprint-url=https://raw.githubusercontent.com/EmranAhmed/git-test/master/.wp-playground/blueprint.json) using Playground.
+
 ## Development
 - `git init`
 - `npm i`
