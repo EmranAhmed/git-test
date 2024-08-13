@@ -29,7 +29,7 @@ jobs:
       - name: Install PHP Dependencies
         uses: ramsey/composer-install@v2
 
-      - name: Use Node.js and Build project
+      - name: Setup and Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
@@ -54,18 +54,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Released ${{ github.ref }}
+         # tag_name: ${{ github.ref }}
+          tag_name:  ${{ format('{0}-{1}', env.plugin_name, github.ref) }}
+          # release_name: Release ${{ github.ref }}
+          release_name: Release ${{ format('{0}-{1}', env.plugin_name, github.ref) }}
+          body: Released ${{ github.ref }}
           draft: false
           prerelease: false
 
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./${{ github.repository }}.zip
-          asset_name: ${{ github.repository }}
-          asset_content_type: application/zip
+#      - name: Upload Release Asset
+#        id: upload-release-asset
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+#          asset_path: ./${{ env.plugin_name }}.zip
+#          asset_name: ${{ env.plugin_name }}
+#          asset_content_type: application/zip
