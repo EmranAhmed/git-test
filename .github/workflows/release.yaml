@@ -8,7 +8,7 @@ on:
 permissions: write-all
 
 env:
-  plugin_name: test-plugin
+  REPOSITORY_NAME: ${{ github.event.repository.name }}
 
 name: Upload Release Asset
 
@@ -55,9 +55,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
          # tag_name: ${{ github.ref }}
-          tag_name:  ${{ format('{0}-{1}', env.plugin_name, github.ref) }}
+          tag_name:  ${{ format('{0}-{1}', env.REPOSITORY_NAME, github.ref) }}
           # release_name: Release ${{ github.ref }}
-          release_name: Release ${{ format('{0}-{1}', env.plugin_name, github.ref) }}
+          release_name: Release ${{ format('{0}-{1}', env.REPOSITORY_NAME, github.ref) }}
           body: Released ${{ github.ref }}
           draft: false
           prerelease: false
